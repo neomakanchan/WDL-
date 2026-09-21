@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Registration</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <header style="text-align:center; padding:20px;">
+        <h1>Farmer Registration</h1>
+        <p><i>Register your farm with the Irrigation Advisory System</i></p>
+    </header>
+
+    <form class="registration-form">
+        <fieldset>
+            <legend>Personal Information</legend>
+
+            <label for="name">Farmer Name:</label>
+            <input type="text" id="name" name="name"
+                   placeholder="Enter your full name" required autofocus>
+
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile"
+                   placeholder="10 digit mobile number"
+                   pattern="[0-9]{10}" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"
+                   placeholder="Enter your email" required>
+        </fieldset>
+
+        <fieldset>
+            <legend>Farm Information</legend>
+
+            <label for="plot">Plot ID:</label>
+            <input type="text" id="plot" name="plot"
+                   placeholder="Example: A101" required>
+
+            <label for="village">Village:</label>
+            <input type="text" id="village" name="village"
+                   placeholder="Enter village name" required>
+
+            <label for="stage">Crop Stage:</label>
+            <select id="stage" name="stage">
+                <option>Germination</option>
+                <option>Tillering</option>
+                <option>Grand Growth</option>
+                <option>Maturity</option>
+            </select>
+
+            <label for="soil">Soil Type:</label>
+            <select id="soil" name="soil">
+                <option>Black Soil</option>
+                <option>Red Soil</option>
+                <option>Alluvial Soil</option>
+                <option>Clay Soil</option>
+            </select>
+
+            <label for="irrigation">Irrigation Method:</label>
+            <select id="irrigation" name="irrigation">
+                <option>Drip Irrigation</option>
+                <option>Sprinkler Irrigation</option>
+                <option>Flood Irrigation</option>
+            </select>
+
+            <label for="date">Registration Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="photo">Farm Photo:</label>
+            <input type="file" id="photo" name="photo" accept="image/*">
+        </fieldset>
+
+        <div style="text-align:center;">
+            <input type="submit" value="Register">
+            <input type="reset" value="Clear">
+        </div>
+    </form>
+
+    <footer>Your farm data helps us provide better irrigation advice.</footer>
+</body>
+</html>
