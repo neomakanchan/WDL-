@@ -3,81 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farmer Registration</title>
+    <title>Farmer Registration - Smart Irrigation</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="form.css">
+
+    <style>
+        .error-message {
+            display: none;
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 4px;
+        }
+    </style>
 </head>
+
 <body>
-    <header style="text-align:center; padding:20px;">
+    <header class="bg-success text-white text-center p-4">
         <h1>Farmer Registration</h1>
-        <p><i>Register your farm with the Irrigation Advisory System</i></p>
+        <p class="mb-0"><i>Register your farm with the Irrigation Advisory System</i></p>
     </header>
 
-    <form class="registration-form">
-        <fieldset>
-            <legend>Personal Information</legend>
+    <main class="container my-4">
+        <!-- Task 1: Farmer Registration Form -->
+        <form id="farmerForm" class="registration-form" novalidate>
 
-            <label for="name">Farmer Name:</label>
-            <input type="text" id="name" name="name"
-                   placeholder="Enter your full name" required autofocus>
+            <fieldset>
+                <legend>Personal Information</legend>
 
-            <label for="mobile">Mobile Number:</label>
-            <input type="tel" id="mobile" name="mobile"
-                   placeholder="10 digit mobile number"
-                   pattern="[0-9]{10}" required>
+                <label for="name">Farmer Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name">
+                <div id="nameError" class="error-message"></div>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email"
-                   placeholder="Enter your email" required>
-        </fieldset>
+                <label for="mobile">Mobile Number:</label>
+                <input type="tel" id="mobile" name="mobile" placeholder="10 digit mobile number">
+                <div id="mobileError" class="error-message"></div>
 
-        <fieldset>
-            <legend>Farm Information</legend>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email">
+                <div id="emailError" class="error-message"></div>
+            </fieldset>
 
-            <label for="plot">Plot ID:</label>
-            <input type="text" id="plot" name="plot"
-                   placeholder="Example: A101" required>
+            <fieldset>
+                <legend>Farm Information</legend>
 
-            <label for="village">Village:</label>
-            <input type="text" id="village" name="village"
-                   placeholder="Enter village name" required>
+                <label for="plot">Plot ID:</label>
+                <input type="text" id="plot" name="plot" placeholder="Example: A101">
+                <div id="plotError" class="error-message"></div>
 
-            <label for="stage">Crop Stage:</label>
-            <select id="stage" name="stage">
-                <option>Germination</option>
-                <option>Tillering</option>
-                <option>Grand Growth</option>
-                <option>Maturity</option>
-            </select>
+                <label for="village">Village:</label>
+                <input type="text" id="village" name="village" placeholder="Enter village name">
+                <div id="villageError" class="error-message"></div>
 
-            <label for="soil">Soil Type:</label>
-            <select id="soil" name="soil">
-                <option>Black Soil</option>
-                <option>Red Soil</option>
-                <option>Alluvial Soil</option>
-                <option>Clay Soil</option>
-            </select>
+                <label for="stage">Crop Stage:</label>
+                <select id="stage" name="stage">
+                    <option value="">-- Select Crop Stage --</option>
+                    <option value="Germination">Germination</option>
+                    <option value="Tillering">Tillering</option>
+                    <option value="Grand Growth">Grand Growth</option>
+                    <option value="Maturity">Maturity</option>
+                </select>
+                <div id="stageError" class="error-message"></div>
 
-            <label for="irrigation">Irrigation Method:</label>
-            <select id="irrigation" name="irrigation">
-                <option>Drip Irrigation</option>
-                <option>Sprinkler Irrigation</option>
-                <option>Flood Irrigation</option>
-            </select>
+                <label for="soil">Soil Type:</label>
+                <select id="soil" name="soil">
+                    <option value="">-- Select Soil Type --</option>
+                    <option value="Black Soil">Black Soil</option>
+                    <option value="Red Soil">Red Soil</option>
+                    <option value="Alluvial Soil">Alluvial Soil</option>
+                    <option value="Clay Soil">Clay Soil</option>
+                </select>
+                <div id="soilError" class="error-message"></div>
 
-            <label for="date">Registration Date:</label>
-            <input type="date" id="date" name="date" required>
+                <label for="irrigation">Irrigation Method:</label>
+                <select id="irrigation" name="irrigation">
+                    <option value="">-- Select Irrigation Method --</option>
+                    <option value="Drip Irrigation">Drip Irrigation</option>
+                    <option value="Sprinkler Irrigation">Sprinkler Irrigation</option>
+                    <option value="Flood Irrigation">Flood Irrigation</option>
+                </select>
+                <div id="irrigationError" class="error-message"></div>
 
-            <label for="photo">Farm Photo:</label>
-            <input type="file" id="photo" name="photo" accept="image/*">
-        </fieldset>
+                <label for="soilMoisture">Soil Moisture (%):</label>
+                <input type="number" id="soilMoisture" name="soilMoisture"
+                       min="0" max="100" step="0.1"
+                       placeholder="Enter value from 0 to 100">
+                <div id="soilMoistureError" class="error-message"></div>
 
-        <div style="text-align:center;">
-            <input type="submit" value="Register">
-            <input type="reset" value="Clear">
-        </div>
-    </form>
+                <label for="date">Registration Date:</label>
+                <input type="date" id="date" name="date">
+                <div id="dateError" class="error-message"></div>
 
-    <footer>Your farm data helps us provide better irrigation advice.</footer>
+                <label for="photo">Farm Photo:</label>
+                <input type="file" id="photo" name="photo" accept="image/*">
+            </fieldset>
+
+            <div class="text-center mt-3">
+                <input type="submit" value="Register" class="btn btn-success me-2">
+                <input type="reset" value="Clear" class="btn btn-secondary">
+            </div>
+        </form>
+    </main>
+
+    <footer class="bg-success text-white text-center p-3 mt-4">
+        <p class="mb-0">Your farm data helps us provide better irrigation advice.</p>
+    </footer>
+
+    <!-- JavaScript validation -->
+    <script src="validation.js"></script>
 </body>
 </html>
