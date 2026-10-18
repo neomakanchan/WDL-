@@ -1,0 +1,4 @@
+function FarmSummary({ farmerName, plotId, crop, soilType }) {
+  return <section className="panel"><div className="panel-heading"><span className="panel-icon">🌱</span><div><h2>Farm information</h2><p>Details used for your irrigation advisory</p></div></div><div className="detail-grid"><div className="detail-item"><span>Farmer</span><strong>{farmerName}</strong></div><div className="detail-item"><span>Plot ID</span><strong>{plotId}</strong></div><div className="detail-item"><span>Crop</span><strong>{crop}</strong></div><div className="detail-item"><span>Soil type</span><strong>{soilType}</strong></div></div></section>;
+}
+export default FarmSummary;
