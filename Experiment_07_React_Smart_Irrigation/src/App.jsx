@@ -1,0 +1,18 @@
+import { useState } from 'react';
+import FarmSummary from './components/FarmSummary.jsx';
+import IrrigationAdvisor from './components/IrrigationAdvisor.jsx';
+import AdviceResult from './components/AdviceResult.jsx';
+
+function App() {
+ const [soilMoisture,setSoilMoisture]=useState(24);
+ const [temperature,setTemperature]=useState(32);
+ const [cropStage,setCropStage]=useState('Vegetative');
+ const [advice,setAdvice]=useState({title:'Check irrigation needs',description:'Your sample readings suggest that the field may need attention.',action:'Check root-zone moisture and local agricultural guidance before deciding to irrigate.'});
+ function generateAdvice(){
+  if(soilMoisture<30){setAdvice({title:'Low soil moisture detected',description:`For the ${cropStage.toLowerCase()} stage, review whether irrigation is needed soon.`,action:temperature>=35?'High temperature may increase water loss. Check the field and local forecast before irrigating.':'Inspect soil near the roots and plan irrigation if the reading matches field conditions.'});}
+  else if(soilMoisture<=65){setAdvice({title:'Moisture is in a moderate range',description:'Continue monitoring your plot rather than irrigating automatically.',action:'Recheck moisture later and consider crop stage, soil type, and weather conditions.'});}
+  else{setAdvice({title:'High soil moisture detected',description:'Additional watering may not be necessary at this time.',action:'Check drainage and avoid overwatering. Reassess the field before the next irrigation.'});}
+ }
+ return <main className="app-shell"><nav className="topbar"><a className="brand" href="#home"><span className="brand-mark">✳</span>Agri<span className="brand-light">Sense</span></a><span className="nav-tag">SMART IRRIGATION ADVISORY</span></nav><section className="hero" id="home"><div><span className="eyebrow">SMART FARMING, SIMPLIFIED</span><h1>Grow smarter.<br/><em>Water better.</em></h1><p>A simple advisory dashboard to help farmers review soil moisture and make informed irrigation decisions.</p><div className="hero-badges"><span>◉ Soil monitoring</span><span>✦ Crop-aware tips</span></div></div><div className="hero-art" aria-hidden="true"><div className="sun"/><div className="hill hill-back"/><div className="hill hill-front"/><div className="plant plant-one"><i/><b/></div><div className="plant plant-two"><i/><b/></div><div className="plant plant-three"><i/><b/></div><div className="art-label">🌿 <div><strong>Water with purpose</strong><small>Every drop matters</small></div></div></div></section><section className="dashboard-heading"><div><span className="section-kicker">YOUR DASHBOARD</span><h2>Good day, Neoma ✺</h2><p>Here’s a quick look at your sample farm data.</p></div><div className="live-pill"><span/> DEMO MODE</div></section><div className="dashboard-grid"><div className="left-column"><FarmSummary farmerName="Neoma Kanchan" plotId="PLOT-024" crop="Rice" soilType="Clay loam"/><IrrigationAdvisor soilMoisture={soilMoisture} temperature={temperature} cropStage={cropStage} onMoistureChange={setSoilMoisture} onTemperatureChange={setTemperature} onCropStageChange={setCropStage} onGenerateAdvice={generateAdvice}/></div><div className="right-column"><AdviceResult advice={advice} soilMoisture={soilMoisture} temperature={temperature}/><section className="tip-card"><span className="tip-icon">☀</span><div><span className="section-kicker">FIELD NOTE</span><h3>Small changes, better harvests.</h3><p>Check soil moisture before watering and keep an eye on local weather conditions.</p></div></section></div></div><footer><span>AgriSense · Smart Irrigation Advisory System</span><span>React component-based application · Experiment 07</span></footer></main>;
+}
+export default App;
